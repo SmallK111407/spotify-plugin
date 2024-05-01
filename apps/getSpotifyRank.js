@@ -20,9 +20,28 @@ export class getSpotifyRank extends plugin {
     }
     getConfig() { return setting.getConfig("config") }
 
+    async fetchWebApi(endpoint, method, body) {
+        const token = this.appconfig["accessToken"]
+        const res = await fetch(`https://api.spotify.com/${endpoint}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            method,
+            body: JSON.stringify(body)
+        })
+        return await res.json()
+    }
+
+    async getTopTracks() {
+        // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
+        return (await this.fetchWebApi(
+            `v1/me/top/tracks?time_range=long_term&limit=5`, 'GET'
+        )).items
+    }
+
     async getSpotifyRank() {
         if (!this.e.isMaster) return false
-        const topTracks = await getTopTracks()
+        const topTracks = await this.getTopTracks()
         try {
             const result = topTracks?.map(
                 ({ name, artists }, index) =>
@@ -31,22 +50,4 @@ export class getSpotifyRank extends plugin {
             await this.e.reply(result.join('\n').trim())
         } catch { }
     }
-}
-async function fetchWebApi(endpoint, method, body) {
-    const token = this.appconfig["accessToken"]
-    const res = await fetch(`https://api.spotify.com/${endpoint}`, {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-        method,
-        body: JSON.stringify(body)
-    })
-    return await res.json()
-}
-
-async function getTopTracks() {
-    // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
-    return (await fetchWebApi(
-        `v1/me/top/tracks?time_range=long_term&limit=5`, 'GET'
-    )).items
 }
