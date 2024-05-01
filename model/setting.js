@@ -80,7 +80,7 @@ class Setting {
   setConfig(app, configObject) {
     if (typeof configObject === 'string') {
       // 如果configObject是一个字符串，将其转换为一个对象
-      configObject = { value: configObject };
+      configObject = { value: configObject }
     }
     return this.setYaml(app, 'config', { ...this.getdefSet(app), ...configObject })
   }
