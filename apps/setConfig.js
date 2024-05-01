@@ -27,7 +27,12 @@ export class setConfig extends plugin {
             }
             const replacedKey = keyReplace[key]
             const matchedMsg = match[5]
-            setting.setConfig('spotifyRank', replacedKey, matchedMsg)
+            const matchedMsgReplace = {
+                "开启": "true",
+                "关闭": "false"
+            }
+            const replacedMatchedMsg = matchedMsgReplace[matchedMsg]
+            setting.setConfig('spotifyRank', replacedKey, replacedMatchedMsg)
             await this.e.reply(`[Spotify插件]设置${replacedKey}成功!`, true)
         }
     }
