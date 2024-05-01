@@ -1,4 +1,5 @@
 import plugin from '../../../lib/plugins/plugin.js'
+import setting from '../model/setting.js'
 import fetch from 'node-fetch'
 
 export class getSpotifyRank extends plugin {
