@@ -42,12 +42,10 @@ export class getSpotifyRank extends plugin {
     async getSpotifyRank() {
         if (!this.e.isMaster) return false
         const topTracks = await this.getTopTracks()
-        try {
-            const result = topTracks?.map(
-                ({ name, artists }, index) =>
-                    `${index + 1}.歌名:${name}\n来自:${artists.map(artist => artist.name).join(', ')}\n`
-            )
-            await this.e.reply(result.join('\n').trim())
-        } catch { }
+        const result = topTracks?.map(
+            ({ name, artists }, index) =>
+                `${index + 1}.歌名:${name}\n来自:${artists.map(artist => artist.name).join(', ')}\n`
+        )
+        await this.e.reply(result.join('\n').trim())
     }
 }
