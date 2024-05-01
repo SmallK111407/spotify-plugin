@@ -29,7 +29,7 @@ export class spotifyUpdate extends plugin {
             }
             const replacedKey = keyReplace[key]
             const matchedMsg = match[5]
-            setting.setConfig(app, replacedKey, matchedMsg)
+            setting.setConfig('config', replacedKey, matchedMsg)
             await this.e.reply(`[Spotify插件]设置${replacedKey}成功!`, true)
         }
     }
