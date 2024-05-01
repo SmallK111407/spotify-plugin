@@ -1,19 +1,19 @@
 import YAML from 'yaml'
 import chokidar from 'chokidar'
 import fs from 'node:fs'
-import { _path, pluginResources, pluginRoot } from "./path.js";
+import { _path, pluginRoot } from "./path.js";
 
 class Setting {
   constructor () {
     /** 默认设置 */
-    this.defPath = `${_path}/plugins/spotify-plugin/def/`
+    this.defPath = `${pluginRoot}/def/`
     this.def = {}
 
     /** 用户设置 */
-    this.configPath = `${_path}/plugins/spotify-plugin/config/`
+    this.configPath = `${pluginRoot}/config/`
     this.config = {}
 
-    this.dataPath = `${_path}/plugins/spotify-plugin/data/`
+    this.dataPath = `${pluginRoot}/data/`
     this.data = {}
 
     /** 监听文件 */
