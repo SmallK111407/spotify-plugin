@@ -31,6 +31,7 @@ export class spotifyUpdate extends plugin {
             const matchedMsg = match[5]
             const result = `${replacedKey}: ${matchedMsg}`
             setting.setYaml(config, config, result)
+            await this.e.reply(`[Spotify插件]设置${replacedKey}成功!`, true)
         }
     }
 }
