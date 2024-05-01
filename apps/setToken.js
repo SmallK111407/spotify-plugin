@@ -23,7 +23,7 @@ export class spotifyUpdate extends plugin {
         if (match) {
             const key = match[4]
             const keyReplace = {
-                "cid": "Client-ID",
+                "cid": "clientID",
                 "cse": "clientSecret",
                 "atk": "accessToken"
             }
