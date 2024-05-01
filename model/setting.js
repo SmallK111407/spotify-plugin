@@ -76,14 +76,13 @@ class Setting {
     return { ...this.getdefSet(app), ...this.getYaml(app, 'config') }
   }
 
-  // 设置对应模块用户配置
-  setConfig(app, configObject) {
-    if (typeof configObject === 'string') {
-      // 如果configObject是一个字符串，将其转换为一个对象
-      configObject = { value: configObject }
-    }
-    return this.setYaml(app, 'config', ...configObject)
+  /// 设置对应模块用户配置
+  setConfig(app, key, value) {
+    const config = this.getdefSet(app);
+    config[key] = value;
+    return this.setYaml(app, 'config', config);
   }
+
 
   // 将对象写入YAML文件
   setYaml(app, type, Object) {
