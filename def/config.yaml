@@ -1,8 +1,8 @@
-# Client-ID 获取文档https://developer.spotify.com/documentation/web-api/tutorials/client-credentials-flow
+# Client-ID
 clientID: null
 
-# Client-Secret 获取文档同上
+# Client-Secret
 clientSecret: null
 
-# Access-Token 请求文档https://developer.spotify.com/documentation/web-api/tutorials/getting-started#request-an-access-token
+# Access-Token
 accessToken: null
