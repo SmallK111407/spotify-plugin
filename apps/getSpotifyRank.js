@@ -3,7 +3,6 @@ import fetch from 'node-fetch'
 
 export class getSpotifyRank extends plugin {
     constructor() {
-        this.appconfig = this.getConfig()
         super({
             name: '[Spotify插件]个人歌曲排行榜',
             dsc: '获取Spotify个人歌曲排行',
@@ -16,6 +15,7 @@ export class getSpotifyRank extends plugin {
                 }
             ]
         })
+        this.appconfig = this.getConfig()
     }
     getConfig() { return setting.getConfig("config") }
 
