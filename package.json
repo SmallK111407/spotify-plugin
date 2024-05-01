@@ -1,0 +1,24 @@
+{
+  "name": "spotify-plugin",
+  "version": "1.0.0",
+  "description": "Yunzai-Bot Spotify插件",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/SmallK071114/spotify-plugin.git"
+  },
+  "keywords": [
+    "Yunzai-Bot",
+    "Miao-Yunzai",
+    "TRSS-Yunzai",
+    "spotify-plugin"
+  ],
+  "author": "SmallK111407",
+  "license": "MIT",
+  "dependencies": {
+  }
+}
