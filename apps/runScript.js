@@ -3,6 +3,7 @@ import { exec as execCb } from "child_process"
 import { pluginRoot } from "../model/path.js"
 import setting from "../model/setting.js"
 import fs from "node:fs"
+import { URL } from "url"
 
 const exec = promisify(execCb)
 const _path = `${pluginRoot}/resources/authorization/`
@@ -59,7 +60,10 @@ export class runScript extends plugin {
                 }
                 logger.debug(`标准输出: ${stdout}`)
                 logger.error(`标准错误: ${stderr}`)
-                this.e.reply(`[Spotify插件]授权脚本已${result}! \n回调地址: ${this.appconfig["redirectUrl"]}`, true)
+                let urlString = this.appconfig["redirectUrl"]
+                let parsedUrl = new URL(urlString)
+                let baseUrl = parsedUrl.protocol + '//' + parsedUrl.hostname + ':' + parsedUrl.port
+                this.e.reply(`[Spotify插件]授权脚本已${result}! \n登录地址: ${baseUrl}`, true)
             })
         }
     }
