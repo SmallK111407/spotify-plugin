@@ -35,10 +35,22 @@ export class setToken extends plugin {
             if (!key === "atk") {
                 setting.setConfig("config", replacedKey, matchedMsg)
             } else {
-                let data = {}
-                data = JSON.parse(fs.readFileSync(this.jsonPath, 'utf8'))
-                data[this.e.user_id] = matchedMsg
-                fs.writeFileSync(this.jsonPath, JSON.stringify(data, null, 2), 'utf8');
+                let data = []
+                if (fs.existsSync(this.jsonPath)) {
+                    data = JSON.parse(fs.readFileSync(this.jsonPath, "utf8"))
+                }
+                let found = false
+                for (let item of data) {
+                    if (item.userId === this.e.user_id) {
+                        item.token = matchedMsg
+                        found = true
+                        break
+                    }
+                }
+                if (!found) {
+                    data.push({ userId: this.e.user_id, token: matchedMsg })
+                }
+                fs.writeFileSync(this.jsonPath, JSON.stringify(data, null, 2), "utf8")
             }
             await this.e.reply(`[Spotify插件]设置${replacedKey}成功!`, true)
         }
