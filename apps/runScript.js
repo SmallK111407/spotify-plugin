@@ -76,6 +76,8 @@ export class runScript extends plugin {
     async scriptUrl() {
         const reurl = this.appconfig["redirectUrl"]
         if (reurl == null) return this.e.reply("[Spotify插件]有尚未配置的内容,无法获取登录地址!", true)
-       await this.e.reply(`登录地址: ${reurl}\n请登录后复制地址栏access_token=后面的"全部"内容\n使用【#sp设置atk<获取的AccessToken>】设置授权令牌\n授权令牌有效时限1小时!`)
+        const parsedUrl = new URL(reurl)
+        const baseUrl = parsedUrl.protocol + '//' + parsedUrl.hostname + ':' + parsedUrl.port
+        await this.e.reply(`登录地址: ${baseUrl}\n请登录后复制地址栏access_token=后面的"全部"内容\n请使用\n【#sp设置atk<获取的AccessToken>】\n来设置授权令牌\n授权令牌有效时限1小时!`)
     }
 }
