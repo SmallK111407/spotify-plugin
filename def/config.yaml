@@ -3,3 +3,6 @@ clientID: null
 
 # Client-Secret
 clientSecret: null
+
+# Redirect_Url
+redirectUrl: null

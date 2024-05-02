@@ -11,7 +11,7 @@ export class setToken extends plugin {
             priority: 100,
             rule: [
                 {
-                    reg: "^#?(s|S)(p|P)(otify)?设置(cid|cse)",
+                    reg: "^#?(s|S)(p|P)(otify)?设置(cid|cse|reurl)",
                     fnc: "configSetting"
                 },
                 {
@@ -32,6 +32,7 @@ export class setToken extends plugin {
             const keyReplace = {
                 "cid": "clientID",
                 "cse": "clientSecret",
+                "reurl": "redirectUrl"
             }
             const replacedKey = keyReplace[key]
             const matchedMsg = match[5]
