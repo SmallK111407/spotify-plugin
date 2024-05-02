@@ -52,7 +52,7 @@ export class getSpotifyPlayStatus extends plugin {
                 "播放设备名称:", playList.device.name + "\n",
                 "播放设备类型:", playList.device.type
             ]
-            await this.e.reply(replyMsg.trim(), true)
+            await this.e.reply(replyMsg, true)
         } catch (error) {
             logger.error(error)
             await this.e.reply("[Spotify插件]获取歌曲播放状态时发生了错误,可能是没有正在播放的歌曲或授权令牌(AccessToken)过期,请发送【#sp登录】重新获取!")
