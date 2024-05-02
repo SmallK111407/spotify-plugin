@@ -8,6 +8,7 @@
  */
 const fs = require('fs');
 const YAML = require('yaml');
+const url = require('url');
 
 // 读取配置文件
 const file = fs.readFileSync('../../config/config.yaml', 'utf8');
@@ -25,7 +26,8 @@ var cookieParser = require('cookie-parser');
 var client_id = config.clientID;
 var client_secret = config.clientSecret;
 var redirect_uri = config.redirectUrl;
-
+var parsedUrl = new url.URL(redirect_uri);
+const port = parsedUrl.port
 
 const generateRandomString = (length) => {
   return crypto
@@ -150,5 +152,5 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
-console.log('Listening on 8888');
-app.listen(8888);
+console.log(`Listening on ${port}`);
+app.listen(port);
