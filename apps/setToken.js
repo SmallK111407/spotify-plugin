@@ -1,5 +1,6 @@
 import plugin from '../../../lib/plugins/plugin.js'
 import setting from '../model/setting.js'
+import fs from 'node:fs'
 import { pluginRoot } from '../model/path.js'
 
 export class setToken extends plugin {
