@@ -6,7 +6,7 @@
 
 # Spotify-Plugin
 
-_🎶Listening Music on **Spotify**!🎶_
+_🎶Listening to Music on **Spotify**!🎶_
 
 </div>
 
