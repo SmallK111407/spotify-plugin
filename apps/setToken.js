@@ -26,7 +26,7 @@ export class setToken extends plugin {
     async configSetting() {
         if (!this.e.isMaster) return false
         const test = /^#?(s|S)(p|P)(otify)?设置(cid|cse|reurl)(.*)/
-        const match = this.e.msg.match(test)
+        const match = this.e.msg.trim().match(test)
         if (match) {
             const key = match[4]
             const keyReplace = {
@@ -42,7 +42,7 @@ export class setToken extends plugin {
     }
     async tokenSetting() {
         const test = /^#?(s|S)(p|P)(otify)?设置atk(.*)/
-        const match = this.e.msg.match(test)
+        const match = this.e.msg.trim().match(test)
         if (match) {
             const matchedMsg = match[4]
             let data = []

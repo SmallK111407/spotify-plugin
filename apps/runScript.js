@@ -23,6 +23,10 @@ export class runScript extends plugin {
                 {
                     reg: "^#?(s|S)(p|P)(otify)?(开启|关闭)授权脚本$",
                     fnc: "runScript"
+                },
+                {
+                    reg: "^#?(s|S)(p|P)(otify)?登(录|陆)(链接|连接)?$",
+                    fnc: "scriptUrl"
                 }
             ]
         })
@@ -68,5 +72,10 @@ export class runScript extends plugin {
                 this.e.reply(message, true)
             })
         }
+    }
+    async scriptUrl() {
+        const reurl = this.appconfig["redirectUrl"]
+        if (reurl == null) return this.e.reply("[Spotify插件]有尚未配置的内容,无法获取登录地址!", true)
+       await this.e.reply(`登录地址: ${reurl}\n请登录后复制地址栏access_token=后面的"全部"内容\n使用【#sp设置atk<获取的AccessToken>】设置授权令牌\n授权令牌有效时限1小时!`)
     }
 }

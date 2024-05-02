@@ -50,11 +50,16 @@ export class getSpotifyRank extends plugin {
 
     async getSpotifyRank() {
         if (!this.e.isMaster) return false
-        const topTracks = await this.getTopTracks()
-        const result = topTracks?.map(
-            ({ name, artists }, index) =>
-                `${index + 1}.歌名:${name}\n来自:${artists.map(artist => artist.name).join(", ")}\n`
-        )
-        await this.e.reply(result.join("\n").trim())
+        try {
+            const topTracks = await this.getTopTracks()
+            const result = topTracks?.map(
+                ({ name, artists }, index) =>
+                    `${index + 1}.歌名:${name}\n来自:${artists.map(artist => artist.name).join(", ")}\n`
+            )
+            await this.e.reply(result.join("\n").trim())
+        } catch (error) {
+            logger.error(error)
+            await this.e.reply("[Spotify插件]获取排行榜时发生了错误,可能是授权令牌(AccessToken)过期,请发送【#sp登录】重新获取!")
+        }
     }
 }
