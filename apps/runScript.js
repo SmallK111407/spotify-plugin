@@ -1,6 +1,7 @@
 import { promisify } from "util"
 import { exec as execCb } from "child_process"
 import { pluginRoot } from "../model/path.js"
+import setting from "../model/setting.js"
 import fs from "node:fs"
 
 const exec = promisify(execCb)
