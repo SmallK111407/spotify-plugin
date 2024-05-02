@@ -10,7 +10,7 @@ const fs = require('fs');
 const YAML = require('yaml');
 
 // 读取配置文件
-const file = fs.readFileSync('../../config/conifig.yaml', 'utf8');
+const file = fs.readFileSync('../../config/config.yaml', 'utf8');
 
 // 解析YAML数据
 const config =  YAML.parse(file);
