@@ -11,7 +11,7 @@ export class setToken extends plugin {
             priority: 100,
             rule: [
                 {
-                    reg: "^#?(s|S)(p|P)(otify)?设置(cid|cse|atk)",
+                    reg: "^#?(s|S)(p|P)(otify)?设置(cid|cse)",
                     fnc: "configSetting"
                 },
                 {
