@@ -13,7 +13,7 @@ export class getSpotifyPlayStatus extends plugin {
             priority: 10,
             rule: [
                 {
-                    reg: "^#?(s|S)(p|P)(otify)?歌曲(播放)?状态$",
+                    reg: "^#?(s|S)(p|P)(otify)?(歌曲|播放)(播放)?状态$",
                     fnc: "getSpotifyPlayStatus"
                 }
             ]
