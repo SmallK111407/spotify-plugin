@@ -1,20 +1,20 @@
-import plugin from '../../../lib/plugins/plugin.js'
-import setting from '../model/setting.js'
-import fetch from 'node-fetch'
-import fs from 'node:fs'
-import { pluginRoot } from '../model/path.js'
+import plugin from "../../../lib/plugins/plugin.js"
+import setting from "../model/setting.js"
+import fetch from "node-fetch"
+import fs from "node:fs"
+import { pluginRoot } from "../model/path.js"
 
 export class getSpotifyRank extends plugin {
     constructor() {
         super({
-            name: '[Spotify插件]个人歌曲排行榜',
-            dsc: '获取Spotify个人歌曲排行',
-            event: 'message',
+            name: "[Spotify插件]个人歌曲排行榜",
+            dsc: "获取Spotify个人歌曲排行",
+            event: "message",
             priority: 10,
             rule: [
                 {
-                    reg: '^#?(s|S)(p|P)(otify)?排行(榜)?$',
-                    fnc: 'getSpotifyRank'
+                    reg: "^#?(s|S)(p|P)(otify)?排行(榜)?$",
+                    fnc: "getSpotifyRank"
                 }
             ]
         })
@@ -23,7 +23,7 @@ export class getSpotifyRank extends plugin {
     get spotifyRankConfig() { return setting.getConfig("spotifyRank") }
 
     async fetchWebApi(endpoint, method, body) {
-        let data = JSON.parse(fs.readFileSync(this.jsonPath, 'utf8'))
+        let data = JSON.parse(fs.readFileSync(this.jsonPath, "utf8"))
         let token
         for (let item of data) {
             if (item.userId === this.e.user_id) {
@@ -44,7 +44,7 @@ export class getSpotifyRank extends plugin {
     async getTopTracks() {
         // Endpoint reference : https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
         return (await this.fetchWebApi(
-            `v1/me/top/tracks?time_range=long_term&limit=${this.spotifyRankConfig["rankNumber"]}`, 'GET'
+            `v1/me/top/tracks?time_range=long_term&limit=${this.spotifyRankConfig["rankNumber"]}`, "GET"
         )).items
     }
 
@@ -53,8 +53,8 @@ export class getSpotifyRank extends plugin {
         const topTracks = await this.getTopTracks()
         const result = topTracks?.map(
             ({ name, artists }, index) =>
-                `${index + 1}.歌名:${name}\n来自:${artists.map(artist => artist.name).join(', ')}\n`
+                `${index + 1}.歌名:${name}\n来自:${artists.map(artist => artist.name).join(", ")}\n`
         )
-        await this.e.reply(result.join('\n').trim())
+        await this.e.reply(result.join("\n").trim())
     }
 }
