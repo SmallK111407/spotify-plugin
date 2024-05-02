@@ -78,7 +78,7 @@ class Setting {
 
   /// 设置对应模块用户配置
   setConfig(app, key, value) {
-    const config = this.getdefSet(app)
+    const config = this.getConfig(app)
     config[key] = value
     return this.setYaml(app, 'config', config)
   }
