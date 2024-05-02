@@ -35,7 +35,7 @@ export class setToken extends plugin {
             if (!key === "atk") {
                 setting.setConfig("config", replacedKey, matchedMsg)
             } else {
-                const data = {}
+                let data = {}
                 data = JSON.parse(fs.readFileSync(this.jsonPath, 'utf8'))
                 data[this.e.user_id] = matchedMsg
                 fs.writeFileSync(this.jsonPath, JSON.stringify(data, null, 2), 'utf8');
