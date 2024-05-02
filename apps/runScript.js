@@ -20,7 +20,7 @@ export class runScript extends plugin {
                     fnc: "installScript"
                 },
                 {
-                    reg: "^#?(s|S)(p|P)(otify)?(运行|关闭)授权脚本$",
+                    reg: "^#?(s|S)(p|P)(otify)?(开启|关闭)授权脚本$",
                     fnc: "runScript"
                 }
             ]
@@ -45,13 +45,13 @@ export class runScript extends plugin {
     async runScript() {
         if (!this.e.isMaster) return false
         if (!fs.existsSync(`${_path}node_modules`)) return this.e.reply(`[Spotify插件]您还未执行【#sp安装授权脚本】,无法运行!`, true)
-        if (this.appconfig['clientID'] == null || this.appconfig['clientSecret'] == null || this.appconfig['redirectUrl'] == null) return this.e.reply("[Spotify插件]有尚未配置的内容,无法运行授权脚本!", true)
-        const regex = /^#?(s|S)(p|P)(otify)?(运行|关闭)授权脚本$/
+        if (this.appconfig["clientID"] == null || this.appconfig["clientSecret"] == null || this.appconfig["redirectUrl"] == null) return this.e.reply("[Spotify插件]有尚未配置的内容,无法运行授权脚本!", true)
+        const regex = /^#?(s|S)(p|P)(otify)?(开启|关闭)授权脚本$/
         const match = this.e.msg.match(regex)
         if (match) {
             const result = match[4]
             let action = match[4]
-            action = (action === "运行") ? "start" : "stop"
+            action = (action === "开启") ? "start" : "stop"
             exec(`cd ${_path} && pm2 ${action} app.js`, (error, stdout, stderr) => {
                 if (error) {
                     logger.error(`标准输出错误: ${error}`)
@@ -59,7 +59,7 @@ export class runScript extends plugin {
                 }
                 logger.debug(`标准输出: ${stdout}`)
                 logger.error(`标准错误: ${stderr}`)
-                this.e.reply(`[Spotify插件]授权脚本已${result}！`, true)
+                this.e.reply(`[Spotify插件]授权脚本已${result}！${action = (action === "开启") ? `\n回调地址: ${this.appconfig["redirectUrl"]}` : ""}`, true)
             })
         }
     }
