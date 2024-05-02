@@ -25,6 +25,8 @@ export class runScript extends plugin {
             ]
         })
     }
+    get appconfig() { return setting.getConfig("config") }
+
     async installScript() {
         if (!this.e.isMaster) return false
         await this.e.reply("[Spotify插件]授权脚本开始安装,请等待...", true)
@@ -42,6 +44,7 @@ export class runScript extends plugin {
     async runScript() {
         if (!this.e.isMaster) return false
         if (!fs.existsSync(`${_path}node_modules`)) return this.e.reply(`[Spotify插件]您还未执行【#sp安装授权脚本】,无法运行!`, true)
+        if (this.appconfig['clientID'] == null || this.appconfig['clientSecret'] == null || this.appconfig['redirectUrl'] == null) return this.e.reply("[Spotify插件]有尚未配置的内容,无法运行授权脚本!", true)
         const regex = /^#?(s|S)(p|P)(otify)?(运行|关闭)授权脚本$/
         const match = this.e.msg.match(regex)
         if (match) {
