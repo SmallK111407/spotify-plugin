@@ -24,13 +24,7 @@ export class getSpotifyRank extends plugin {
 
     async fetchWebApi(endpoint, method, body) {
         const data = JSON.parse(fs.readFileSync(this.jsonPath, 'utf8'))
-        let token
-        for (let item of data) {
-            if (item.userId === this.e.user_id) {
-                token = item.token
-                break
-            }
-        }
+        const token = data[this.e.user_id]
         const res = await fetch(`https://api.spotify.com/${endpoint}`, {
             headers: {
                 Authorization: `Bearer ${token}`,

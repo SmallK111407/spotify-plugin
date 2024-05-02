@@ -36,7 +36,7 @@ export class setToken extends plugin {
                 setting.setConfig("config", replacedKey, matchedMsg)
             } else {
                 const data = JSON.parse(fs.readFileSync(this.jsonPath, 'utf8'))
-                data.push({ userId: this.e.user_id, token: matchedMsg })
+                data.push({ [this.e.user_id]: matchedMsg })
                 fs.writeFileSync(this.jsonPath, JSON.stringify(data, null, 2), 'utf8')
             }
             await this.e.reply(`[Spotify插件]设置${replacedKey}成功!`, true)
