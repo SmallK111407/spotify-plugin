@@ -43,8 +43,8 @@ class Setting {
   getData(path, filename) {
     path = `${this.dataPath}${path}/`
     try {
-      if (!fs.existsSync(`${path}${filename}.yaml`)) { return false }
-      return YAML.parse(fs.readFileSync(`${path}${filename}.yaml`, 'utf8'))
+      if (!fs.existsSync(`${path}${filename}.json`)) { return false }
+      return JSON.parse(fs.readFileSync(`${path}${filename}.json`, 'utf8'))
     } catch (error) {
       logger.error(`[${filename}] 读取失败 ${error}`)
       return false
@@ -59,7 +59,7 @@ class Setting {
         // 递归创建目录
         fs.mkdirSync(path, { recursive: true });
       }
-      fs.writeFileSync(`${path}${filename}.yaml`, YAML.stringify(data), 'utf8')
+      fs.writeFileSync(`${path}${filename}.json`, JSON.stringify(data, null, 2), 'utf8')
     } catch (error) {
       logger.error(`[${filename}] 写入失败 ${error}`)
       return false
@@ -78,9 +78,9 @@ class Setting {
 
   /// 设置对应模块用户配置
   setConfig(app, key, value) {
-    const config = this.getdefSet(app);
-    config[key] = value;
-    return this.setYaml(app, 'config', config);
+    const config = this.getdefSet(app)
+    config[key] = value
+    return this.setYaml(app, 'config', config)
   }
 
 

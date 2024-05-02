@@ -1,6 +1,7 @@
 import plugin from '../../../lib/plugins/plugin.js'
 import setting from '../model/setting.js'
 import fetch from 'node-fetch'
+import { pluginRoot } from '../model/path.js'
 
 export class getSpotifyRank extends plugin {
     constructor() {
@@ -16,12 +17,19 @@ export class getSpotifyRank extends plugin {
                 }
             ]
         })
+        this.jsonPath = `${pluginRoot}/data/userData/userData.json`
     }
-    get config() { return setting.getConfig("config") }
     get spotifyRankConfig() { return setting.getConfig("spotifyRank") }
 
     async fetchWebApi(endpoint, method, body) {
-        const token = this.config["accessToken"]
+        const data = JSON.parse(await fs.readFile(this.jsonPath, 'utf8'))
+        let token
+        for (let item of data) {
+            if (item.userId === this.e.user_id) {
+                token = item.token
+                break
+            }
+        }
         const res = await fetch(`https://api.spotify.com/${endpoint}`, {
             headers: {
                 Authorization: `Bearer ${token}`,

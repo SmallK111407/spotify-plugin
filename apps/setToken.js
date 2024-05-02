@@ -1,5 +1,6 @@
 import plugin from '../../../lib/plugins/plugin.js'
 import setting from '../model/setting.js'
+import { pluginRoot } from '../model/path.js'
 
 export class setToken extends plugin {
     constructor() {
@@ -14,6 +15,7 @@ export class setToken extends plugin {
                 }
             ]
         })
+        this.jsonPath = `${pluginRoot}/data/userData/userData.json`
     }
 
     async setting() {
@@ -29,7 +31,13 @@ export class setToken extends plugin {
             }
             const replacedKey = keyReplace[key]
             const matchedMsg = match[5]
-            setting.setConfig('config', replacedKey, matchedMsg)
+            if (!key === "atk") {
+                setting.setConfig("config", replacedKey, matchedMsg)
+            } else {
+                const data = JSON.parse(await fs.readFile(this.jsonPath, 'utf8'))
+                data.push({ userId: this.e.user_id, token: matchedMsg })
+                await fs.writeFile(this.jsonPath, JSON.stringify(data, null, 2), 'utf8')
+            }
             await this.e.reply(`[Spotify插件]设置${replacedKey}成功!`, true)
         }
     }
