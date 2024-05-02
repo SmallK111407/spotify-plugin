@@ -59,7 +59,7 @@ export class runScript extends plugin {
                 }
                 logger.debug(`标准输出: ${stdout}`)
                 logger.error(`标准错误: ${stderr}`)
-                this.e.reply(`[Spotify插件]授权脚本已${result}！${action = (action === "开启") ? `\n回调地址: ${this.appconfig["redirectUrl"]}` : ""}`, true)
+                this.e.reply(`[Spotify插件]授权脚本已${result}！${result = (result === "开启") ? `\n回调地址: ${this.appconfig["redirectUrl"]}` : ""}`, true)
             })
         }
     }
