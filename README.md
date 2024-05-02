@@ -1,4 +1,14 @@
+<p align="center">
+  <a href="../../../../SmallK111407/"><img src="./resources/logo/logo.png" width="100%" height="100%" alt="spotify-plugin"></a>
+</p>
+
+<div align="center">
+
 # Spotify-Plugin
+
+_🎶Listening Music on **Spotify**!🎶_
+
+</div>
 
 ## 项目介绍
 
@@ -23,9 +33,33 @@ git clone --depth=1 https://gitee.com/SmallK111407/spotify-plugin.git plugins/sp
 
 <details><summary>展开/收起</summary>
 
-### 1.待添加...
+### 1.授权脚本类方法(仅主人)
 
-### 2.更新`Spotify插件`(仅主人)
+发送`#sp安装授权脚本`即可安装授权脚本依赖
+
+安装完成后发送`#sp(开启|关闭|重启)授权脚本`即可分别对应`开启、关闭、重启`脚本
+
+### 2.Spotify登录
+
+发送`#sp登录`通过返回的教程获取AccessToken并设置
+
+### 3.设置Spotify歌曲排行数量(仅主人)
+
+发送`#sp设置排行数量<数字>`即可设置
+
+**注意**: 过大可能导致发送失败
+
+### 4.设置AccessToken配置
+
+发送`#sp设置atk<填入的值>`即可设置个人**AccessToken**的值
+
+**AccessToken**从**第2步**获取
+
+### 5.设置Token类配置(仅主人)
+
+发送`#sp设置(cid|cse|reurl)<填入的值>`即可分别设置`ClientID、ClientSecret、RedirectUrl`
+
+### 6.更新`Spotify插件`(仅主人)
 
 发送`#sp更新`即可更新`Spotify插件`
 
