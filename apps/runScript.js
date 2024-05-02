@@ -60,10 +60,12 @@ export class runScript extends plugin {
                 }
                 logger.debug(`标准输出: ${stdout}`)
                 logger.error(`标准错误: ${stderr}`)
-                let urlString = this.appconfig["redirectUrl"]
-                let parsedUrl = new URL(urlString)
-                let baseUrl = parsedUrl.protocol + '//' + parsedUrl.hostname + ':' + parsedUrl.port
-                this.e.reply(`[Spotify插件]授权脚本已${result}! \n登录地址: ${baseUrl}`, true)
+                const urlString = this.appconfig["redirectUrl"]
+                const parsedUrl = new URL(urlString)
+                const baseUrl = parsedUrl.protocol + '//' + parsedUrl.hostname + ':' + parsedUrl.port
+                let message = `[Spotify插件]授权脚本已${result}!`
+                message += result === '开启' ? `\n登录地址: ${baseUrl}` : ''
+                this.e.reply(message, true)
             })
         }
     }
