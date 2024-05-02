@@ -1,6 +1,7 @@
 import plugin from '../../../lib/plugins/plugin.js'
 import setting from '../model/setting.js'
 import fetch from 'node-fetch'
+import fs from 'node:fs'
 import { pluginRoot } from '../model/path.js'
 
 export class getSpotifyRank extends plugin {
@@ -22,7 +23,7 @@ export class getSpotifyRank extends plugin {
     get spotifyRankConfig() { return setting.getConfig("spotifyRank") }
 
     async fetchWebApi(endpoint, method, body) {
-        const data = JSON.parse(await fs.readFile(this.jsonPath, 'utf8'))
+        const data = JSON.parse(fs.readFileSync(this.jsonPath, 'utf8'))
         let token
         for (let item of data) {
             if (item.userId === this.e.user_id) {
