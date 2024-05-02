@@ -45,7 +45,7 @@ export class getSpotifyPlayStatus extends plugin {
             const seconds = ((playingMs % (1000 * 60)) / 1000).toFixed(0)
             const isPlaying = playList.is_playing ? "是" : "否"
             const replyMsg = [
-                "歌曲专辑:", segment.image(playList.item.album.images[0].url) + "\n",
+                "歌曲专辑:", segment.image(JSON.stringify(playList.item.album.images[0].url)) + "\n",
                 "歌曲名称:", "《" + playList.item.name + "》" + "\n",
                 "歌曲来自:", playList.item.artists.map(artist => artist.name).join(', ') + "\n",
                 "正在播放时长:", minutes + "分" + seconds + "秒" + "\n",
