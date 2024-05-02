@@ -10,8 +10,8 @@ const _path = `${pluginRoot}/resources/authorization/`
 export class runScript extends plugin {
     constructor() {
         super({
-            name: "[Spotify插件]个人歌曲排行榜",
-            dsc: "获取Spotify个人歌曲排行",
+            name: "[Spotify插件]授权脚本类方法",
+            dsc: "授权脚本类方法",
             event: "message",
             priority: 10,
             rule: [
@@ -28,13 +28,14 @@ export class runScript extends plugin {
     }
     async installScript() {
         if (!this.e.isMaster) return false
+        await this.e.reply("[Spotify插件]授权脚本开始安装,请等待...", true)
         try {
             const { stdout, stderr } = await exec(`cd ${_path} && npm install -P`)
             logger.debug(`标准输出: ${stdout}`)
             if (stderr) {
                 logger.error(`标准错误: ${stderr}`)
             }
-            await this.e.reply("[Spotify插件]授权脚本依赖安装完成", true)
+            await this.e.reply("[Spotify插件]授权脚本安装完成", true)
         } catch (error) {
             logger.error(`标准输入错误: ${error}`)
         }
