@@ -29,6 +29,16 @@ git clone --depth=1 https://github.com/SmallK111407/spotify-plugin.git plugins/s
 git clone --depth=1 https://gitee.com/SmallK111407/spotify-plugin.git plugins/spotify-plugin/
 ```
 
+## 配置文档 & 常见问题
+
+
+
+[点此跳转到**配置文档**](./resources//docs/guide.md)
+
+[点此跳转到**常见问题**](./resources/docs/FAQ.md)
+
+
+
 ## 功能介绍
 
 <details><summary>展开/收起</summary>
@@ -65,7 +75,6 @@ git clone --depth=1 https://gitee.com/SmallK111407/spotify-plugin.git plugins/sp
 
 </details>
 
-## [**用户指南**](./resources/docs/guide.md)
 
 ## 免责声明
 
