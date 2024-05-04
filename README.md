@@ -65,6 +65,8 @@ git clone --depth=1 https://gitee.com/SmallK111407/spotify-plugin.git plugins/sp
 
 </details>
 
+## [**用户指南**](./resources/docs/guide.md)
+
 ## 免责声明
 
 1. 功能仅限内部交流与小范围使用，请勿将本仓库用于以盈利为目的的场景
